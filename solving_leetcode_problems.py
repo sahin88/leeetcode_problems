@@ -23,3 +23,49 @@ class Solution:
                     helperfunc(i,j ,grid)
         return num_of_island
         
+#55 Jump Game 
+#Solution 1
+
+class Solution:
+    can_jump=False
+    def canJump(self, nums: List[int]) -> bool:
+        pos=0
+        destination=len(nums)-1
+       
+        def helperfunc(pos):
+            if pos==destination:
+                self.can_jump=True
+                return True
+        
+            max_jump=nums[pos]
+            for i in range(1,max_jump+1,1):
+                if (helperfunc(pos+i)):
+                    break
+
+
+        helperfunc(pos)
+            
+        
+        return self.can_jump
+#169. Majority Element
+#Solution 1
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        treshold=len(nums)/2 #1.5
+        collections={}
+        max_value=0
+        max_key=0
+        #{3:2,2:1}
+        for item in nums:
+            if item not in collections:
+                collections[item]=1
+            else:
+                collections[item]+=1
+        for key, values in collections.items():
+            if values>treshold or values>max_value:
+                #3,2
+                max_value=values #2
+                max_key=key #3
+        return max_key
+            
