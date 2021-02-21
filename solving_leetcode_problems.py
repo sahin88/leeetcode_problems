@@ -68,4 +68,28 @@ class Solution:
                 max_value=values #2
                 max_key=key #3
         return max_key
+
+#132 Gas STation
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        index_of_station=len(gas) #5
+        start_index=None
+        for i in range(index_of_station):
+            if gas[i]-cost[i]>=0:
+                start_index=i
+                actual_gas=0
+                for j in range(index_of_station):
+                    rel_index=j+start_index
+                    if rel_index>index_of_station-1:
+                            rel_index=rel_index-index_of_station
+                    actual_gas=actual_gas+gas[rel_index]-cost[rel_index]
+
+                    if actual_gas<0:
+                        break
+                    if j == index_of_station-1 and actual_gas>=0:
+                        return start_index
+                    
+                    
+        return -1
+                        
             
