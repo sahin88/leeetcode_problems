@@ -91,5 +91,22 @@ class Solution:
                     
                     
         return -1
-                        
+                   
+# Java Solution  1725. Number Of Rectangles That Can Form The Largest Square
+class Solution {
+    public int countGoodRectangles(int[][] rectangles) {
+        Map<Integer,Integer> hashmap= new HashMap<Integer,Integer>();
+        
+        for (int [] rectangle:rectangles){
+            int min_val=Math.min(rectangle[0],rectangle[1]);
+            
+            int count=hashmap.containsKey(min_val)?hashmap.get(min_val):0;
+            hashmap.put(min_val,count+1);
+            
+        }
+        List<Integer> hasharr = new ArrayList<Integer>(hashmap.keySet());
+        
+         return hashmap.get(Collections.max(hasharr));
+    }
+}     
             
