@@ -274,6 +274,22 @@ class Solution:
             
         
         return proviences
+### 1748. Sum of Unique Elements
+class Solution:
+    def sumOfUnique(self, nums: List[int]) -> int:
+        empty_dict={}
+        
+        for i in nums:
+            if i not in empty_dict:
+                empty_dict[i]=1
+            else:
+                empty_dict[i]+=1
+        total_sum=0     
+        print(empty_dict)
+        for keys,values in empty_dict.items():
+            if values==1:
+                total_sum+=keys
+        return total_sum
             
 
          
