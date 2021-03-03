@@ -109,4 +109,47 @@ class Solution {
          return hashmap.get(Collections.max(hasharr));
     }
 }     
+   
+
+#1742. Maximum Number of Balls in a Box
+##Python 
+class Solution:
+    def countBalls(self, lowLimit: int, highLimit: int) -> int:
+        empty_dict={}
+        for i in range( lowLimit, highLimit+1,+1):
+            starter=0
+            for j in str(i):
+                starter+=int(j)
+            if starter not in empty_dict:
+                empty_dict[starter]=1
+            else:
+                empty_dict[starter]+=1
+        return max(empty_dict.values())
+
+## Java 
+class Solution {
+    public int countBalls(int lowLimit, int highLimit) {
+        Map<Integer,Integer> hashmap= new HashMap<>();
+        
+        for(int i=lowLimit; i<highLimit+1; i++){
+            int sum_digits=sum_of_digit(i);
+            int counter=hashmap.containsKey(sum_digits)?hashmap.get(sum_digits):0;
+            hashmap.put(sum_digits,counter+1);
+                
+        }
+        
+        return Collections.max(hashmap.values());
+    }
+    public int sum_of_digit(int nums){
+        int sum=0;
+        while(nums>0){
+            sum= sum+nums % 10;
+            nums=nums/10;
             
+        }
+        return sum;
+    }
+}
+                
+
+         
