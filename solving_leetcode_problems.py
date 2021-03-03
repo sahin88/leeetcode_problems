@@ -251,6 +251,29 @@ class Solution:
                 return True
         return False
         
+
+### 547 Number of Proviences
+
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        visited_city={}
+        proviences=0
+        for i in range(len(isConnected)):
+            if i not in visited_city:
+                visited_city[i]=False
+        
+        def helperfunc(city, city_connections):  
+            visited_city[city]=True
+            for cities ,item  in enumerate(city_connections): 
+                if item==1 and  not visited_city[cities] :
+                    helperfunc(cities,isConnected[cities])
+        for city, city_connections in enumerate(isConnected):
+            if  not visited_city[city]:
+                proviences+=1
+                helperfunc(city,city_connections)
+            
+        
+        return proviences
             
 
          
