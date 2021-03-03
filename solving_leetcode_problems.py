@@ -151,5 +151,106 @@ class Solution {
     }
 }
                 
+#####206. Reverse Linked List
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        prev=None
+        while head:
+            temp=head
+            head=head.next
+            temp.next=prev
+            prev=temp
+        return prev
+            
+####700. Search in a Binary Search Tree
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+        self.result=None
+        def helperfunc(root):
+            if root is None:
+                return
+            if root and root.val==val:
+                self.result=root
+            helperfunc(root.right)
+            helperfunc(root.left)
+            
+            
+        helperfunc(root)
+        return self.result
+            
+
+### 98 Validate Binary Tree
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: TreeNode) -> bool:
+        def helperfunc(root):
+            if not root:
+                return True
+            if root.val>root.val:
+                return False
+            if root.right.val<root.val:
+                return False   
+        
+            return helperfunc(root.left) and helperfunc(root.right)
+        return helperfunc(root)
+
+##142. Linked List Cycle 2
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def detectCycle(self, head: ListNode) -> ListNode:
+        fast, slow =head, head
+        while fast and fast.next:
+            slow, fast=slow.next, fast.next.next
+            if slow== fast:
+                break
+        else:
+            return 
+        pointer=head
+        
+        while pointer!=slow:
+            pointer=pointer.next
+            slow=slow.next
+        return pointer
+### 141 LInked List Cycle 
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        fast, slow=head, head
+       
+        
+        while fast and fast.next:
+            print(fast.next.next.val,fast.next.val)
+            fast, slow= fast.next.next, slow.next
+            
+            if fast==slow:
+                return True
+        return False
+        
+            
 
          
